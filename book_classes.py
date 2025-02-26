@@ -48,8 +48,8 @@ for event in bookable_events:
 def pause_until(pause_time):
     tz = pytz.timezone('Europe/Madrid')
     print(f"Current time: {datetime.now(tz)}")
-    while datetime.now(tz) < pause_time:
-        time.sleep(1)
+#     while datetime.now(tz) < pause_time:
+#         time.sleep(1)
 
 # Suspend to book events if there are any to sign up for
 if bookable_events:
@@ -61,6 +61,6 @@ if bookable_events:
     # Attempt to book the class
     print(f"Attempting to book {bookable_events[0].name}")
     # Trigger a short burst of bookings for eligible classes
-    session.burst_booking(bookable_events)
+#     session.burst_booking(bookable_events)
 else:
     print("No events to book")
