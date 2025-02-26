@@ -49,8 +49,12 @@ def pause_until(pause_time):
     tz = pytz.timezone('Europe/Madrid')
     print(f"Current time: {datetime.now(tz)}")
     print(f"Pausing until: {pause_time}")
-#     while datetime.now(tz) < pause_time:
-#         time.sleep(1)
+    try:
+        while datetime.now(tz) < pause_time:
+            print(f"Time until pause: {pause_time - datetime.now(tz)}")
+            time.sleep(1)
+    except Exception as e:
+        print(f"Error in pause_until: {e}")
 
 # Suspend to book events if there are any to sign up for
 if bookable_events:
