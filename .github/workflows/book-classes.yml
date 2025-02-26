@@ -26,7 +26,10 @@ jobs:
         python-version: "3.10"
 
     - name: Run a simple script
-      run: python -c "print('Hello from minimal workflow!')"
+      run: python test.py
+      env:
+        HWF_USERNAME: ${{ secrets.HWF_USERNAME }}
+        HWF_PASSWORD: ${{ secrets.HWF_PASSWORD }}
         
     - name: Install dependencies
       run: |
