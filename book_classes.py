@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from config import load_config
 import time
-import pytz
 
 print("Starting running application...")
 
@@ -45,16 +44,15 @@ for event in bookable_events:
     print()
 
 # Suspends the current thread until the supplied time,
-def pause_until(pause_time):
-    tz = pytz.timezone('Europe/Madrid')
-    print(f"Current time: {datetime.now(tz)}")
-    print(f"Pausing until: {pause_time}")
-    try:
-        while datetime.now(tz) < pause_time:
-            print(f"Time until pause: {pause_time - datetime.now(tz)}")
-            time.sleep(1)
-    except Exception as e:
-        print(f"Error in pause_until: {e}")
+def pause_until(next_run):
+    print(f"Current time: {now}")
+    sleep_duration = (next_run - now).total_seconds()
+    if (sleep_duration > config.maxSuspendSeconds):
+        print(f"Still {sleep_duration} seconds until the next booking run ({next_run}), exceeding the maxSuspendSeconds ({config.maxSuspendSeconds}) limit. Terminating")
+        quit()
+    if (sleep_duration > 0):
+        print(f"Pausing for {sleep_duration} seconds until {next_run}")
+        time.sleep(sleep_duration)
 
 # Suspend to book events if there are any to sign up for
 if bookable_events:
