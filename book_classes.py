@@ -1,6 +1,6 @@
-# from datetime import datetime, timedelta
+from datetime import datetime, timedelta
 from config import load_config
-# import time
+import time
 # import sys
 # import pytz
 
@@ -15,14 +15,12 @@ if credentials is None:
     quit(1)
 session = credentials.login()
 print(f"Established a session with user id: {session.user_id}")
-#
-#
-# # Look at the whole next week for classes of interest
-# now = datetime.now(tz=config.load_timezone())
-# today = now.strftime('%Y-%m-%d')
-# in_a_week = (now + timedelta(days=7)).strftime('%Y-%m-%d')
-#
-#
+
+# Look at the whole next week for classes of interest
+now = datetime.now(tz=config.load_timezone())
+today = now.strftime('%Y-%m-%d')
+in_a_week = (now + timedelta(days=7)).strftime('%Y-%m-%d')
+
 # # Setup the matcher to establish whether a class is of interest
 # classEventMatcher = config.create_matcher()
 #
