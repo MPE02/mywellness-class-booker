@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from config import load_config
 import time
-# import sys
 import pytz
 
 print("Starting running application...")
@@ -47,7 +46,8 @@ for event in bookable_events:
 
 # Suspends the current thread until the supplied time,
 def pause_until(pause_time):
-    tz = pytz.timezone('Europe/Madrid')  # Replace with your timezone
+    tz = pytz.timezone('Europe/Madrid')
+    print(f"Current time: {datetime.now(tz)}")
     while datetime.now(tz) < pause_time:
         time.sleep(1)
 
@@ -57,8 +57,7 @@ if bookable_events:
     print(f"Booking time: {booking_time}")
     pause_time = booking_time - timedelta(seconds=5)
     print(f"Pausing until: {pause_time}")
-#     pause_until(pause_time)
-    print(f"Current time: {datetime.now(tz)}")
+    pause_until(pause_time)
     # Attempt to book the class
     print(f"Attempting to book {bookable_events[0].name}")
     # Trigger a short burst of bookings for eligible classes
