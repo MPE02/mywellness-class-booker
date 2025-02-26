@@ -51,17 +51,17 @@ def pause_until(pause_time):
     while datetime.now(tz) < pause_time:
         time.sleep(1)
 
-# # Suspend to book events if there are any to sign up for
-# if bookable_events:
-#     booking_time = bookable_events[0].bookingInfo.bookingOpensOn
-#     print(f"Booking time: {booking_time}")
-#     pause_time = booking_time - timedelta(seconds=5)
-#     print(f"Pausing until: {pause_time}")
-#     pause_until(pause_time)
-#     print(f"Current time: {datetime.now(tz)}")
-#     # Attempt to book the class
-#     print(f"Attempting to book {bookable_events[0].name}")
-#     # Trigger a short burst of bookings for eligible classes
-#     session.burst_booking(bookable_events)
-# else:
-#     print("No events to book")
+# Suspend to book events if there are any to sign up for
+if bookable_events:
+    booking_time = bookable_events[0].bookingInfo.bookingOpensOn
+    print(f"Booking time: {booking_time}")
+    pause_time = booking_time - timedelta(seconds=5)
+    print(f"Pausing until: {pause_time}")
+    pause_until(pause_time)
+    print(f"Current time: {datetime.now(tz)}")
+    # Attempt to book the class
+    print(f"Attempting to book {bookable_events[0].name}")
+    # Trigger a short burst of bookings for eligible classes
+    session.burst_booking(bookable_events)
+else:
+    print("No events to book")
