@@ -25,15 +25,6 @@ jobs:
       with:
         python-version: "3.10"
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-
-    - name: Run a simple script
-      run: python test.py
-      env:
-        HWF_USERNAME: ${{ secrets.HWF_USERNAME }}
-        HWF_PASSWORD: ${{ secrets.HWF_PASSWORD }}
-        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
