@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from config import load_config
 import time
 # import sys
-# import pytz
+import pytz
 
 print("Starting running application...")
 
@@ -45,12 +45,12 @@ for event in bookable_events:
     print(f"Found bookable event: {event.to_string_with_status()}")
     print()
 
-# # Suspends the current thread until the supplied time,
-# def pause_until(pause_time):
-#     tz = pytz.timezone('Europe/Berlin')  # Replace with your timezone
-#     while datetime.now(tz) < pause_time:
-#         time.sleep(1)
-#
+# Suspends the current thread until the supplied time,
+def pause_until(pause_time):
+    tz = pytz.timezone('Europe/Madrid')  # Replace with your timezone
+    while datetime.now(tz) < pause_time:
+        time.sleep(1)
+
 # # Suspend to book events if there are any to sign up for
 # if bookable_events:
 #     booking_time = bookable_events[0].bookingInfo.bookingOpensOn
