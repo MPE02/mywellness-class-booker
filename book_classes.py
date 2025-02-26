@@ -57,7 +57,7 @@ if bookable_events:
     print(f"Booking time: {booking_time}")
     pause_time = booking_time - timedelta(seconds=5)
     print(f"Pausing until: {pause_time}")
-    pause_until(pause_time)
+#     pause_until(pause_time)
     print(f"Current time: {datetime.now(tz)}")
     # Attempt to book the class
     print(f"Attempting to book {bookable_events[0].name}")
