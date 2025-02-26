@@ -44,22 +44,22 @@ for event in bookable_events:
     print()
 
 # Suspends the current thread until the supplied time,
-def pause_until(next_run):
+def pause_until(run_time):
     print(f"Current time: {now}")
-    sleep_duration = (next_run - now).total_seconds()
+    sleep_duration = (run_time - now).total_seconds()
     if (sleep_duration > config.maxSuspendSeconds):
-        print(f"Still {sleep_duration} seconds until the next booking run ({next_run}), exceeding the maxSuspendSeconds ({config.maxSuspendSeconds}) limit. Terminating")
+        print(f"Still {sleep_duration} seconds until the next booking run ({run_time}), exceeding the maxSuspendSeconds ({config.maxSuspendSeconds}) limit. Terminating")
         quit()
     if (sleep_duration > 0):
-        print(f"Pausing for {sleep_duration} seconds until {next_run}")
+        print(f"Pausing for {sleep_duration} seconds until {run_time}")
         time.sleep(sleep_duration)
 
 # Suspend to book events if there are any to sign up for
 if bookable_events:
     booking_time = bookable_events[0].bookingInfo.bookingOpensOn
     print(f"Booking time: {booking_time}")
-    pause_time = booking_time - timedelta(seconds=5)
-    pause_until(pause_time)
+    run_time = booking_time - timedelta(seconds=5)
+    pause_until(run_time)
     # Attempt to book the class
     print(f"Attempting to book {bookable_events[0].name}")
     # Trigger a short burst of bookings for eligible classes
